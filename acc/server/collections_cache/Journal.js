@@ -1,0 +1,1 @@
+Acc.Collection.Journal.cacheTimestamp();

@@ -1,0 +1,115 @@
+<template name="acc_navbar">
+    <li class="{{isActiveRoute name='acc.home'}}"><a href="{{pathFor 'acc.home'}}"><i class="fa fa-home"></i> Home</a>
+    </li>
+    <!--<li class="{{isActiveRoute name='acc.customer'}}"><a href="{{pathFor 'acc.customer'}}">Customer</a></li>-->
+    <li class="{{isActiveRoute name='acc.journal'}}"><a href="{{pathFor 'acc.journal'}}"><i class="fa fa-plus"></i>
+        Journal Entries</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-eye-slash"></i> Accountant <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+
+            <li class="{{isActiveRoute name='acc.journalReport'}}"><a
+                    href="{{pathFor 'acc.journalReport'}}"><i class="fa fa-file-text-o"></i> Journal</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.ledgerReport'}}"><a
+                    href="{{pathFor 'acc.ledgerReport'}}"><i class="fa fa-file-text-o"></i> General Ledger</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.trialBalanceReport'}}"><a
+                    href="{{pathFor 'acc.trialBalanceReport'}}"><i class="fa fa-file-text-o"></i> Trial Balance</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.currencyClosingReport'}}"><a
+                    href="{{pathFor 'acc.currencyClosingReport'}}"><i class="fa fa-file-text-o"></i> Currency
+                Closing</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-file-pdf-o"></i> Reports <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+            <li class="{{isActiveRoute name='acc.ProfitLostReport'}}"><a
+                    href="{{pathFor 'acc.ProfitLostReport'}}"><i class="fa fa-file-pdf-o"></i> Profit and Lost</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.balanceSheetReport'}}"><a
+                    href="{{pathFor 'acc.balanceSheetReport'}}"><i class="fa fa-file-pdf-o"></i> Balance Sheet</a>
+            </li>
+            <li class="divider"></li>
+           <li class="dropdown-submenu">
+                <a tabindex="-1" href="#"><i class="fa fa-list-alt"></i> NBC</a>
+                <ul class="dropdown-menu">
+                    <li class="{{isActiveRoute name='acc.IncomeAndExpenditureReport'}}"><a
+                            href="{{pathFor 'acc.IncomeAndExpenditureReport'}}"><i class="fa fa-file-pdf-o"></i> Income
+                        And Expenditure</a></li>
+                    <li class="{{isActiveRoute name='acc.BalanceSheetNBCReport'}}"><a
+                            href="{{pathFor 'acc.BalanceSheetNBCReport'}}"><i class="fa fa-file-pdf-o"></i> Balance
+                        Sheet</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-cogs"></i> Setting <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+            <li class="{{isActiveRoute name='acc.chartAccount'}}">
+                <a href="{{pathFor 'acc.chartAccount'}}"><i class="fa fa-list-ul"></i> Chart of Account</a>
+            </li>
+            <li class="{{isActiveRoute name='cpanel.exchange'}}">
+                <a href="{{pathFor 'cpanel.exchange'}}"><i class="fa fa-exchange"></i> Exchange</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.exchangeNBC'}}">
+                <a href="{{pathFor 'acc.exchangeNBC'}}"><i class="fa fa-exchange"></i> Exchange NBC</a>
+            </li>
+            <li class="{{acc.dateEndOfProcess}}">
+                <a href="{{pathFor 'acc.dateEndOfProcess'}}"><i class="fa fa-stop"></i> End Of Process</a>
+            </li>
+            <li class="{{acc.mapClosing}}">
+                <a href="{{pathFor 'acc.mapClosing'}}"><i class="fa fa-cog"></i> Config Closing</a>
+            </li>
+            <li class="divider"></li>
+            <li class="dropdown-submenu">
+                <a tabindex="-1" href="#"><i class="fa fa-list-alt"></i> Map ChartAccount</a>
+                <ul class="dropdown-menu">
+                    <li class="{{acc.mapNbcBalance}}">
+                        <a href="{{pathFor 'acc.mapNbcBalance'}}"><i class="fa fa-map-signs"></i> Map NBC Balance</a>
+                    </li>
+                    <li class="{{acc.mapNbcIncome}}">
+                        <a href="{{pathFor 'acc.mapNbcIncome'}}"><i class="fa fa-map-signs"></i> Map NBC Income</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+        <!--<li class="endOfProcess">
+            <a href="#">EndOfProcess</a>
+        </li>-->
+
+    </li>
+    <!--<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-wrench"></i> Tools <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+
+            &lt;!&ndash;<li class="{{isActiveRoute name='acc.backup'}}"><a href="{{pathFor 'acc.backup'}}">
+                <i class="fa fa-files-o"></i> Backup</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.restore'}}"><a href="{{pathFor 'acc.restore'}}">
+                <i class="fa fa-files-o"></i> Restore</a>
+            </li>&ndash;&gt;
+            <li class="{{isActiveRoute name='cpanel.backupRestore'}}"><a href="{{pathFor 'cpanel.backupRestore'}}">
+                <i class="fa fa-download"></i> BackUp & Restore</a>
+            </li>
+            <li class="{{isActiveRoute name='acc.help'}}"><a href="{{pathFor 'acc.help'}}" target="_blank">
+                <i class="fa fa-phone"></i> Help</a>
+            </li>
+        </ul>
+    </li>-->
+
+</template>

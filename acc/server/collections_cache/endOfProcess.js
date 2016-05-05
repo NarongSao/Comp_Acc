@@ -1,0 +1,1 @@
+Acc.Collection.DateEndOfProcess.cacheTimestamp();
