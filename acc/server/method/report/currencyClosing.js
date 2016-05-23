@@ -172,6 +172,7 @@ Meteor.methods({
       var selectorClose={};
       selectorClose.dateFrom= moment(date[0],"YYYY-MM-DD").toDate();
       selectorClose.dateTo= moment(date[1],"YYYY-MM-DD").toDate();
+      selectorClose.branchId=self.branchId;
 
       var closingId=Acc.Collection.Closing.insert(selectorClose);
 

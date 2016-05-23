@@ -29,6 +29,64 @@ generateTpl.onRendered(function(){
     });
 });
 
+generateTplForAll.events({
+    'dblclick .profitRow': function (e, t) {
+        debugger;
+            var params={};
+            var queryParams={};
+
+         var q = FlowRouter.current().queryParams;
+         var self=this;
+
+        queryParams.branchId=q.branchId;
+        queryParams.currencyId=q.currencyId;
+        queryParams.date=q.date;
+
+        var code=  replaceAll(self.code,"&nbsp;","");
+
+         var account=Acc.Collection.ChartAccount.findOne({code: code});
+        var accountTypeId=[];
+        accountTypeId.push(account.accountTypeId);
+
+        queryParams.chartAccount=account._id;
+        queryParams.accountType=accountTypeId;
+
+        var path = FlowRouter.path("acc.journalReportGen", params, queryParams);
+
+        window.open(path,"_blank");
+
+    }
+});
+
+generateTpl.events({
+    'dblclick .profitRow': function (e, t) {
+        debugger;
+            var params={};
+            var queryParams={};
+
+         var q = FlowRouter.current().queryParams;
+         var self=this;
+
+        queryParams.branchId=q.branchId;
+        queryParams.currencyId=q.currencyId;
+        queryParams.date=q.date;
+
+        var code=  replaceAll(self.code,"&nbsp;","");
+
+         var account=Acc.Collection.ChartAccount.findOne({code: code});
+        var accountTypeId=[];
+        accountTypeId.push(account.accountTypeId);
+
+        queryParams.chartAccount=account._id;
+        queryParams.accountType=accountTypeId;
+
+        var path = FlowRouter.path("acc.journalReportGen", params, queryParams);
+
+        window.open(path,"_blank");
+
+    }
+});
+
 
 generateTpl.helpers({
     options: function () {
@@ -93,6 +151,10 @@ generateTplForAll.helpers({
         return call.result();
     }
 });
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
 
 
 

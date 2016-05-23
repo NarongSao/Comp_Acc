@@ -27,6 +27,7 @@ Acc.Collection.DateEndOfProcess.before.insert(function (userId, doc) {
     selector.dollar = math.round(data.profitUSD,2);
     selector.endId = doc._id;
     selector.year = year;
+    selector.branchId=doc.branchId;
 
     Acc.Collection.NetInCome.insert(selector);
 

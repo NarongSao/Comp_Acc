@@ -28,6 +28,10 @@ Acc.Schema.NetInCome = new SimpleSchema({
     },
     year: {
         type: String
+    },
+    branchId: {
+        type: String,
+        label: "Branch"
     }
 
 });

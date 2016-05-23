@@ -17,6 +17,10 @@ Acc.Schema.Closing = new SimpleSchema({
   },dateTo: {
     type: Date,
     label: "Close Date To"
+  },
+  branchId: {
+    type: String,
+    label: "Branch"
   }
 });
 /**

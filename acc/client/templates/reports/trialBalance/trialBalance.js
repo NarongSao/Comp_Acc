@@ -21,6 +21,9 @@ generateTpl.onRendered(function(){
 });
 
 
+
+
+
 generateTpl.helpers({
     options: function () {
         // font size = null (default), bg

@@ -23,12 +23,17 @@ Module.Acc = {
             'acc_exchangeNBC',
             'accMapNBCBalance',
             'accMapNBCIncome',
-            'accMapClosing'
+            'accMapClosing',
+            'cpanel_exchange'
         ],
         data: [
             'accJournal',
             'accCloseChartAccount',
-            'accDateEndOfProcess'
+            'accDateEndOfProcess',
+            'acc_netIncome',
+            'accClosing',
+
+
         ]
     }
 };
