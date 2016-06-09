@@ -7,7 +7,7 @@ Acc.Schema.CurrencyClosing = new SimpleSchema({
     autoform: {
       type: "select2",
       options: function() {
-        return Acc.ListForReport.branch();
+        return Acc.ListForReport.branchByClosing();
       }
     }
   },

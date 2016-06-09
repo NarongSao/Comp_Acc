@@ -15,7 +15,6 @@ indexTpl.events({
         alertify.exchange(fa("plus", "Exchange"), renderTemplate(newTpl));
     },
     'click .js-update' (e, t) {
-        console.log(this);
         alertify.exchange(fa("pencil", "Exchange"), renderTemplate(editTpl, this));
     },
     'click .js-destroy' (e, t) {

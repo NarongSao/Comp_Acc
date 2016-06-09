@@ -45,6 +45,6 @@ Acc.TabularTable.Journal = new Tabular.Table({
         },
         {data: "currencyId", title: "Currency"}
     ],
-    extraFields: ['currencyId']
+    extraFields: ['currencyId','transactionAsset']
 
 });

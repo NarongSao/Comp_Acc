@@ -12,6 +12,12 @@ reportTpl.onRendered(function () {
     });
 });
 
+reportTpl.helpers({
+    selector: function () {
+        return {branchId : Session.get("currentBranch")};
+    }
+})
+
 
 generateTpl.onRendered(function () {
     // SEO

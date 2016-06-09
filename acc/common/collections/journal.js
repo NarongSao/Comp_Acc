@@ -98,16 +98,59 @@ Acc.Schema.Journal = new SimpleSchema({
         decimal: true,
         optional: true
     },
-    endId:{
+    endId: {
         type: String,
         optional: true,
         defaultValue: "0"
     },
 
-    closingId:{
+    closingId: {
         type: String,
         optional: true,
         defaultValue: "0"
+    }, transactionAsset: {
+        type: [Object],
+        optional: true
+    },
+    'transactionAsset.$': {
+        type: Object,
+        optional: true
+    },
+    'transactionAsset.$.account': {
+        type: String,
+        max: 200,
+        label: "Account",
+        optional: true
+    },
+    'transactionAsset.$.value': {
+        type: Number,
+        decimal: true,
+        blackbox: true,
+        optional: true
+    }, 'transactionAsset.$.life': {
+        type: Number,
+        blackbox: true,
+        optional: true
+    },
+    'transactionAsset.$.estSalvage': {
+        type: Number,
+        optional: true,
+        blackbox: true
+    },
+    'transactionAsset.$.qty': {
+        type: Number,
+        optional: true,
+        blackbox: true
+    },
+    'transactionAsset.$.percent': {
+        type: Number,
+        decimal: true,
+        optional: true
+    },
+
+    'transactionAsset.$.description': {
+        type: String,
+        optional: true
     }
     /*createdAt: {
      type: Date,
@@ -147,8 +190,54 @@ Acc.Schema.Journal = new SimpleSchema({
      }*/
 
 });
+
+
+
+
+
 Acc.Collection.Journal.attachSchema(Acc.Schema.Journal);
 
 SimpleSchema.messages({
     "uniqueVoucher": "Voucher must be unique."
 })
+
+
+
+//Sub
+Acc.Schema.fixAssetSchema = new SimpleSchema({
+    account: {
+        type: String,
+        max: 200,
+        autoform: {
+            type: "select2",
+            options: function () {
+                return Acc.List.fixAssetChatAccount();
+            }
+        }
+    },
+    value: {
+        type: Number,
+        decimal: true,
+        optional: true
+    }, life: {
+        type: Number,
+        optional: true
+    },
+    estSalvage: {
+        type: Number,
+        optional: true
+    },
+    qty: {
+        type: Number,
+        optional: true
+    },
+    percent: {
+        type: Number,
+        decimal: true,
+        optional: true
+    },
+    description: {
+        type: String,
+        optional: true
+    }
+});

@@ -19,6 +19,7 @@ Acc.Schema.ChartAccountNBC = new SimpleSchema({
         type: String,
         label: "Name"
     },
+
     accountTypeNBC: {
         type: String,
         label: "Account Type"

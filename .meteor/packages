@@ -110,6 +110,7 @@ momentjs:moment
 lbee:moment-helpers
 
 ### List View ###
+aslagle:reactive-table
 aldeed:tabular
 
 ### Modal, Alert ###
@@ -147,6 +148,8 @@ npm-container
 peerlibrary:blaze-components
 dalgard:viewmodel
 
+
+
 ### Others ###
 underscorestring:underscore.string
 erasaur:meteor-lodash
@@ -179,3 +182,4 @@ theara:factory
 theara:app-dump
 theara:autoform-file
 theara:scrollup
+abpetkov:switchery

@@ -15,6 +15,8 @@ var state = new ReactiveObj({
  */
 journalDetailTpl.onRendered(function () {
     $('.tmpAccount').select2();
+    $('.tmpAccount').select2('val', '');
+
 });
 
 

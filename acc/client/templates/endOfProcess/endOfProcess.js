@@ -9,7 +9,11 @@ dateEndOfProcessTpl.onRendered(function () {
     });
 })
 
-
+dateEndOfProcessTpl.helpers({
+    selector: function () {
+        return {branchId : Session.get("currentBranch")};
+    }
+})
 dateEndOfProcessInsertTpl.onRendered(function () {
     datePicker();
     var cur = moment().format("YYYY-MM-DD");

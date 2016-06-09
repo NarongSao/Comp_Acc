@@ -60,7 +60,6 @@ generateTplForAll.events({
 
 generateTpl.events({
     'dblclick .profitRow': function (e, t) {
-        debugger;
             var params={};
             var queryParams={};
 

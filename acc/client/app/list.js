@@ -25,6 +25,33 @@ Acc.List = {
 
         return list;
     },
+    depType: function () {
+        var typeArr = [];
+        typeArr.push({
+            value: '',
+            label: "(Select One)"
+        }, {
+            value: '01: Straight Line',
+            label: "01: Straight Line"
+        }, {
+            value: '02: Sum Of Year Digits',
+            label: "02: Sum Of Year Digits"
+        }, {
+            value: '03: Declining Balance',
+            label: "03: Declining Balance"
+        })
+        return typeArr;
+    }, fixAssetChatAccount: function () {
+        var listChartAccount = [];
+        Acc.Collection.ChartAccount.find({accountTypeId: '11'}, {sort: {code: 1}})
+            .forEach(function (obj) {
+                listChartAccount.push({
+                    label: Spacebars.SafeString(Acc.SpaceChar.space(obj.level * 6) + obj.code + " | " + obj.name),
+                    value:  obj.code + " | " + obj.name
+                })
+            });
+        return listChartAccount;
+    },
     parent: function (selector) {
         var selector = _.isUndefined(selector) ? {} : selector;
         var list = [{label: "(Select One)", value: ""}];
@@ -80,6 +107,17 @@ Acc.List = {
         var selector = _.isUndefined(selector) ? {} : selector;
         var list = [{label: "(Select One)", value: ""}];
         Acc.Collection.ChartAccountNBC.find(selector, {sort: {code: 1}})
+            .forEach(function (obj) {
+                list.push({
+                    label: obj.code + " | " + obj.name,
+                    value: obj._id
+                })
+            });
+        return list;
+    }, chartAccountNBCKH: function (selector) {
+        var selector = _.isUndefined(selector) ? {} : selector;
+        var list = [{label: "(Select One)", value: ""}];
+        Acc.Collection.ChartAccountNBCKH.find(selector, {sort: {code: 1}})
             .forEach(function (obj) {
                 list.push({
                     label: obj.code + " | " + obj.name,

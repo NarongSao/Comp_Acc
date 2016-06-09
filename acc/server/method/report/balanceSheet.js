@@ -221,7 +221,6 @@ Meteor.methods({
                     grandTotalExpenseBath += val.value;
                 }
             }
-
             return key;
         }, {});
 

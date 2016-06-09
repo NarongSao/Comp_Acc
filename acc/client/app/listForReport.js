@@ -4,7 +4,16 @@
 
 //var accountType=ReactiveArray();
 Acc.ListForReport = {
-    branch: function () {
+    branchByClosing: function () {
+        var list = [];
+        list.push({label: "(Select One)", value: ""});
+        Cpanel.Collection.Branch.find()
+            .forEach(function (obj) {
+                list.push({label: obj.enName, value: obj._id});
+            });
+
+        return list;
+    },branch: function () {
         var list = [];
         list.push({label: "(Select All)", value: "All"});
         Cpanel.Collection.Branch.find()

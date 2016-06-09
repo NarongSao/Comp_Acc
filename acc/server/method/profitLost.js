@@ -32,13 +32,13 @@ Meteor.methods({
     ]);
 
     result.forEach(function(obj) {
-      var re = Math.abs(Meteor.call('exchange', obj._id.currency,
-        baseCurrency, obj.result, exchangeDate));
+      var re = Meteor.call('exchange', obj._id.currency,
+        baseCurrency, obj.result, exchangeDate);
       arr.push({
         account: obj._id.account,
         name: obj._id.name,
-        result: re,
-        value: Math.abs(obj.result),
+        result:  ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*re: re,
+        value: ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*obj.result: obj.result,
         accountType: obj._id.accountType,
         code: obj._id.code,
         currency: obj._id.currency,
@@ -73,12 +73,12 @@ Meteor.methods({
     ]);
 
     result.forEach(function(obj) {
-      var re = Math.abs(Meteor.call('exchangeNBC', obj._id.currency,
-        baseCurrency, obj.result, exchangeDate));
+      var re = Meteor.call('exchangeNBC', obj._id.currency,
+        baseCurrency, obj.result, exchangeDate);
       arr.push({
         account: obj._id.account,
         name: obj._id.name,
-        result: re,
+        result:  ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*re: re,
         accountType: obj._id.accountType,
         code: obj._id.code,
         currency: obj._id.currency
@@ -121,13 +121,13 @@ Meteor.methods({
 
     result.forEach(function(obj) {
       // exchangeDate == exchangeDateID
-      var re = Math.abs(Meteor.call('exchange', obj._id.currency,
-        baseCurrency, obj.result, exchangeDate));
+      var re = Meteor.call('exchange', obj._id.currency,
+        baseCurrency, obj.result, exchangeDate);
       arr.push({
         account: obj._id.account,
         name: obj._id.name,
-        result: re,
-        value: Math.abs(obj.result),
+        result:  ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*re: re,
+        value: ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*obj.result: obj.result,
         accountType: obj._id.accountType,
         code: obj._id.code,
         currency: obj._id.currency,
@@ -166,13 +166,13 @@ Meteor.methods({
 
       resultMiddle.forEach(function(obj) {
 
-        var re = Math.abs(Meteor.call('exchange', obj._id.currency,
-          baseCurrency, obj.result, exchangeDate));
+        var re = Meteor.call('exchange', obj._id.currency,
+          baseCurrency, obj.result, exchangeDate);
         arr.push({
           account: obj._id.account,
           name: obj._id.name,
-          result: re,
-          value: Math.abs(obj.result),
+          result:  ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*re: re,
+          value: ["20","21","30","40","41"].indexOf(obj._id.accountType)!=-1 ? (-1)*obj.result: obj.result,
           accountType: obj._id.accountType,
           code: obj._id.code,
           currency: obj._id.currency,
@@ -189,13 +189,13 @@ Meteor.methods({
       var resultEnd = Acc.Collection.CloseChartAccount.find(
         selectorEndDate).fetch();
       resultEnd.forEach(function(obj) {
-        var re = Math.abs(Meteor.call('exchange', obj.currencyId,
-          baseCurrency, obj.value, exchangeDate));
+        var re = Meteor.call('exchange', obj.currencyId,
+          baseCurrency, obj.value, exchangeDate);
         arr.push({
           account: obj.closeChartAccountId,
           name: obj.name,
-          result: re,
-          value: Math.abs(obj.result),
+          result:  ["20","21","30","40","41"].indexOf(obj.accountTypeId)!=-1 ? (-1)*re: re,
+          value: ["20","21","30","40","41"].indexOf(obj.accountTypeId)!=-1 ? (-1)*obj.result: obj.result,
           accountType: obj.accountTypeId,
           code: obj.code,
           currency: obj.currencyId,

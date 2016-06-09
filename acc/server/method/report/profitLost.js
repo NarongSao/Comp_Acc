@@ -516,7 +516,6 @@ Meteor.methods({
         var subTotalExpenseYearToDate = 0;
 
         var subTotalIncomeYearToDate = 0;
-
         contentProfit.reduce(function (key, val) {
             if (val.thisMonth == true) {
                 if (!key[val.account]) {
@@ -627,6 +626,7 @@ Meteor.methods({
 
         var resultIncomeFinal = [];
         resultIncome.sort(compare);
+
         resultIncome.map(function (obj) {
             if (temporaryIncome !== obj.parent & isPushIncome == false) {
                 resultIncomeFinal.push({
