@@ -3,11 +3,6 @@ Acc.Collection.Journal = new Mongo.Collection('accJournal');
  Schema
  */
 Acc.Schema.Journal = new SimpleSchema({
-    //_id :{
-    //    type:String,
-    //    label:"Invoice",
-    //    optional:true
-    //},
     journalDate: {
         type: Date,
         label: "Date",
@@ -69,14 +64,6 @@ Acc.Schema.Journal = new SimpleSchema({
         type: String,
         max: 200,
         label: "Account"
-        /* ,
-         autoform: {
-         type: 'selectize',
-         options: function () {
-         return Acc.List.chartAccountId();
-         return null;
-         }
-         }*/
     },
     'transaction.$.dr': {
         type: Number,
@@ -103,8 +90,12 @@ Acc.Schema.Journal = new SimpleSchema({
         optional: true,
         defaultValue: "0"
     },
-
-    closingId: {
+    fixAssetExpenseId: {
+        type: String,
+        optional: true,
+        defaultValue: "0"
+    }
+    , closingId: {
         type: String,
         optional: true,
         defaultValue: "0"

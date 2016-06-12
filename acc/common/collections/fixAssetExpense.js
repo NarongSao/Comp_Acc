@@ -13,18 +13,16 @@ Acc.Schema.FixAssetExpense = new SimpleSchema({
 
   date: {
     type: Date,
-    label: "Date",
-    defaultValue: function () {
-      var currentDate = moment(new Date()).format('YYYY-MM-DD');
-      return currentDate;
-    }
+    label: "Date"
   },
   branchId: {
     type: String,
-    label: "Branch"
+    label: "Branch",
+    optional: true
   },transactionExpense: {
     type: [Object],
-    minCount: 1
+    minCount: 1,
+    optional: true
   },
   'transactionExpense.$': {
     type: Object
@@ -51,8 +49,9 @@ Acc.Schema.FixAssetExpense = new SimpleSchema({
     type: String,
     label: "Currency"
   },
-  journalId:{
-    type: String
+  'transactionExpense.$.journalId':{
+    type: String,
+    optional: true
   }
 });
 /**

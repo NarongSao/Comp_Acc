@@ -17,12 +17,11 @@ fixAssetExpenseTpl.helpers({
 fixAssetExpenseInsertTpl.onRendered(function () {
     datePicker();
     var cur = moment().format("YYYY-MM-DD");
-    $("#dateExpense").val(cur);
-    disableDate();
+    $('[name="date"]').val(cur);
 })
 
 var datePicker = function () {
-    var dob = $('[name="dateExpense"]');
+    var dob = $('[name="date"]');
     DateTimePicker.date(dob);
 };
 
@@ -53,23 +52,6 @@ fixAssetExpenseTpl.events({
 });
 
 fixAssetExpenseInsertTpl.events({
-    'click .save': function (e, t) {
-        var dateSelect = $("[name='dateExpense']").val();
-        $("[name='dateExpense']").val("");
-        var selector={};
-        selector.branchId=Session.get("currentBranch");
-        selector.date=dateSelect;
-        Meteor.call('fixAssetExpense',selector,function (err,result) {
-            if(result){
-                alertify.success("Success");
-            }else{
-                alertify.warning("fixed asset can't depreciation!!!");
-            }
-
-        });
-
-
-    },
     'click .reset': function (e, t) {
         $("#dateEndOfProcess").val('');
     }
@@ -79,9 +61,20 @@ fixAssetExpenseInsertTpl.events({
  * Hook
  */
 AutoForm.hooks({
-    fixAssetExpenseInsertTpl: {
+    acc_fixAssetExpenseInsert: {
+        before: {
+            insert: function (doc) {
+                doc.branchId=Session.get("currentBranch");
+                return doc;
+            }
+        },
         onSuccess: function(formType, result) {
+            event.preventDefault();
             alertify.depreciationExpense().close();
+            alertify.success("Success");
+        },
+        onError: function(formType, error) {
+            alertify.error(error.message);
         }
     }
 });

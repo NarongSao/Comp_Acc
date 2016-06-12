@@ -13,12 +13,11 @@
 </template>
 
 <template name="acc_fixAssetExpenseInsert">
-    <form id="dateExpense">
-        <div class="form-group">
-            <label for="Date">Date:</label>
-            <input type="text" class="form-control dateExpense" name="dateExpense">
-        </div>
-        <button type="button" class="btn btn-primary save">{{fa "floppy-o"}} Save</button>
-        <button type="reset" class="btn btn-default reset">{{fa "refresh"}} Reset</button>
-    </form>
+    {{#autoForm collection=Acc.Collection.FixAssetExpense id="acc_fixAssetExpenseInsert"  type="insert"}}
+    <div class="row">
+        {{> afQuickField name='date'}}
+    </div>
+    <button type="submit" class="btn btn-primary">{{fa "floppy-o"}} Save</button>
+    <button type="reset" class="btn btn-default">{{fa "refresh"}} Reset</button>
+{{/autoForm}}
 </template>

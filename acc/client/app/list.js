@@ -51,6 +51,26 @@ Acc.List = {
                 })
             });
         return listChartAccount;
+    }, fixAssetList: function () {
+        var listChartAccount = [{label: "(Select One)", value: ""}];
+        Acc.Collection.ChartAccount.find({accountTypeId: '11'}, {sort: {code: 1}})
+            .forEach(function (obj) {
+                listChartAccount.push({
+                    label: Spacebars.SafeString(Acc.SpaceChar.space(obj.level * 6) + obj.code + " | " + obj.name),
+                    value: obj._id
+                })
+            });
+        return listChartAccount;
+    },fixAssetExpenseList: function () {
+        var listChartAccount = [{label: "(Select One)", value: ""}];
+        Acc.Collection.ChartAccount.find({accountTypeId: '50'}, {sort: {code: 1}})
+            .forEach(function (obj) {
+                listChartAccount.push({
+                    label: Spacebars.SafeString(Acc.SpaceChar.space(obj.level * 6) + obj.code + " | " + obj.name),
+                    value:  obj._id
+                })
+            });
+        return listChartAccount;
     },
     parent: function (selector) {
         var selector = _.isUndefined(selector) ? {} : selector;

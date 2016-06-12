@@ -55,12 +55,13 @@ fixAssetTpl.helpers({
         return listChartAccount;
     },
     fixAsset: function () {
+       /* debugger;
         let data = Template.currentData();
         if (data && data.transactionAsset) {
             data.transactionAsset.forEach((obj)=> {
                 fixAssetDepCollection.insert(obj);
             });
-        }
+        }*/
         let getItems = fixAssetDepCollection.find().fetch();
         return getItems;
     },
@@ -170,9 +171,5 @@ AutoForm.hooks({
         }
     }
 });
-
-fixAssetTpl.onDestroyed(function () {
-   fixAssetDepCollection.remove({});
-})
 
 

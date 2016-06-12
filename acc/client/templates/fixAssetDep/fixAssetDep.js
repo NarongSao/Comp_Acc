@@ -1,5 +1,6 @@
 var fixAssetDepTpl = Template.acc_fixAssetDep,
-    fixAssetListTPL=Template.acc_fixAssetDepList;
+    fixAssetListTPL=Template.acc_fixAssetDepList,
+    fixAssetDepSummaryListTpl=Template.acc_fixAssetDepSummaryList;
     fixAssetDepTpl.onRendered(function () {
     createNewAlertify("fixAssetDep");
     // SEO
@@ -30,6 +31,19 @@ fixAssetDepTpl.events({
 
         window.open(path,"_blank");
 
+    },
+    'click .fixedAssetSummaryDepreciation': function (e, t) {
+        var self = this;
+
+        var params={};
+        var queryParams={};
+
+        queryParams.branchId=Session.get("currentBranch");
+
+        var path = FlowRouter.path("acc.fixAssetDepSummaryList", params, queryParams);
+
+        window.open(path,"_blank");
+
     }
 });
 
@@ -52,6 +66,29 @@ fixAssetListTPL.helpers({
 
         Fetcher.setDefault('data',false);
         Fetcher.retrieve('data','acc_fixAssetDepList',q);
+
+        return Fetcher.get('data');
+    }
+})
+
+fixAssetDepSummaryListTpl.helpers({
+    options: function () {
+        // font size = null (default), bg
+        // paper = a4, a5, mini
+        // orientation = portrait, landscape
+        return {
+            //fontSize: 'bg',
+            paper: 'a4',
+            orientation: 'portrait'
+        };
+    },
+    data: function () {
+        // Get query params
+        //FlowRouter.watchPathChange();
+        var q = FlowRouter.current().queryParams;
+
+        Fetcher.setDefault('data',false);
+        Fetcher.retrieve('data','acc_fixAssetDepSummaryList',q);
 
         return Fetcher.get('data');
     }
