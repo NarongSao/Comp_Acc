@@ -232,3 +232,32 @@ Acc.Schema.fixAssetSchema = new SimpleSchema({
         optional: true
     }
 });
+
+
+
+
+/*
+Acc.Schema.accountSchema = new SimpleSchema({
+    tmpAccount: {
+        type: String,
+        max: 200,
+        autoform: {
+            type: "universe-select",
+            afFieldInput: {
+                uniPlaceholder: 'Select One',
+                optionsMethod: 'acc.selectOptMethods.account'
+            }
+        }
+    },
+    tmpDr: {
+        type: Number,
+        decimal: true,
+        optional: true
+    },
+    tmpCr: {
+        type: Number,
+        decimal: true,
+        optional: true
+    }
+});
+*/

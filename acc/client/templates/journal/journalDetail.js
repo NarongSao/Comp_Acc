@@ -14,8 +14,15 @@ var state = new ReactiveObj({
  * JournalDetail
  */
 journalDetailTpl.onRendered(function () {
-    $('.tmpAccount').select2();
-    $('.tmpAccount').select2('val', '');
+ //  $('.tmpAccount').select();
+    // $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
+    /*$.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
+        $(".tmpAccount").select2({
+            matcher: oldMatcher(matchStart)
+        })
+    });*/
+
+    $('.tmpAccount').val('');
 
 });
 
@@ -64,6 +71,14 @@ journalDetailTpl.helpers({
         });
         var totalCr = formatNumberToSeperate(math.round(totalCrVal, 2).toString());
         return totalCr;
+    },
+    options: function () {
+        var list=[];
+        list.push({
+            label: "test",
+            value: "test"
+        })
+        return list;
     }
 });
 
@@ -256,6 +271,15 @@ var formatNumberToSeperate = function (val) {
             $('.save-journal').attr('disabled', false);
         }
     };
+
+
+function matchStart (term, text) {
+    if (text.toUpperCase().indexOf(term.toUpperCase()) == 0) {
+        return true;
+    }
+
+    return false;
+}
 
 
 
