@@ -306,6 +306,8 @@ Meteor.methods({
             l = 0,
             m = 0;
 
+
+        result.sort(compareByAccountType);
         result.forEach(function(o) {
 
             if (o.accountTypeId == "10") {
@@ -382,7 +384,8 @@ Meteor.methods({
                 });
 
 
-            } else if (o.accountTypeId == "11") {
+            }
+            else if (o.accountTypeId == "11") {
                 totalFixAsset += o.result;
                 totalFixAssetUSD += o.amountUsd;
                 totalFixAssetRiel += o.amountRiel;
@@ -395,7 +398,10 @@ Meteor.methods({
                                 name: dataOld.name,
                                 code: Acc.SpaceChar.space(15 + (6 * dataOld.level)) +
                                 'Total : ' + dataOld.code,
-                                amount: subTotal
+                                amount: subTotal,
+                                amountUsd:  subTotalUSD ,
+                                amountRiel: subTotalRiel ,
+                                amountThb:  subTotalTHB
                             });
                             isPush = true;
 
@@ -468,7 +474,8 @@ Meteor.methods({
                 });
 
 
-            } else if (o.accountTypeId == "12") {
+            }
+            else if (o.accountTypeId == "12") {
                 totalOtherFixAsset += o.result;
                 totalOtherFixAssetUSD += o.amountUsd;
                 totalOtherFixAssetRiel += o.amountRiel;
@@ -482,7 +489,10 @@ Meteor.methods({
                                 name: dataOld.name,
                                 code: Acc.SpaceChar.space(15 + (6 * dataOld.level)) +
                                 'Total : ' + dataOld.code,
-                                amount: subTotal
+                                amount: subTotal,
+                                amountUsd:  subTotalUSD ,
+                                amountRiel: subTotalRiel ,
+                                amountThb:  subTotalTHB
 
                             });
                             isPush = true;
@@ -555,7 +565,8 @@ Meteor.methods({
                     amountThb: o.amountThb
                 });
 
-            } else if (o.accountTypeId == "20") {
+            }
+            else if (o.accountTypeId == "20") {
                 totalOtherCurrentLiability += o.result;
                 totalOtherCurrentLiabilityUSD += o.amountUsd;
                 totalOtherCurrentLiabilityRiel += o.amountRiel;
@@ -567,7 +578,10 @@ Meteor.methods({
                             name: dataOld.name,
                             code: Acc.SpaceChar.space(15 + (6 * dataOld.level)) +
                             'Total : ' + dataOld.code,
-                            amount: subTotal
+                            amount: subTotal,
+                            amountUsd:  subTotalUSD ,
+                            amountRiel: subTotalRiel ,
+                            amountThb:  subTotalTHB
                         });
                         isPush = true;
                     }
@@ -617,9 +631,9 @@ Meteor.methods({
                             code: Acc.SpaceChar.space(22 + (6 * dataOld.level)) +
                             'Total : ' + dataOld.code,
                             amount: x * subTotal,
-                            amountUsd:  subTotalUSD ,
-                            amountRiel: subTotalRiel ,
-                            amountThb:  subTotalTHB
+                            amountUsd: x * subTotalUSD ,
+                            amountRiel: x *subTotalRiel ,
+                            amountThb: x * subTotalTHB
                         });
                         isPush = true;
                     }
@@ -638,7 +652,8 @@ Meteor.methods({
                     amountThb: x * o.amountThb
                 });
 
-            } else if (o.accountTypeId == "21") {
+            }
+            else if (o.accountTypeId == "21") {
                 totalLongTermLiability += o.result;
                 totalLongTermLiabilityUSD += o.amountUsd;
                 totalLongTermLiabilityRiel += o.amountRiel;
@@ -651,7 +666,10 @@ Meteor.methods({
                                 name: dataOld.name,
                                 code: Acc.SpaceChar.space(22 + (6 * dataOld.level)) +
                                 'Total : ' + dataOld.code,
-                                amount: x * subTotal
+                                amount: x * subTotal,
+                                amountUsd:  x * subTotalUSD ,
+                                amountRiel: x * subTotalRiel ,
+                                amountThb:  x * subTotalTHB
                             });
                             isPush = true;
 
@@ -701,9 +719,9 @@ Meteor.methods({
                             code: Acc.SpaceChar.space(22 + (6 * dataOld.level)) +
                             'Total : ' + dataOld.code,
                             amount: x * subTotal,
-                            amountUsd:  subTotalUSD ,
-                            amountRiel: subTotalRiel ,
-                            amountThb:  subTotalTHB
+                            amountUsd: x * subTotalUSD ,
+                            amountRiel:x * subTotalRiel ,
+                            amountThb:  x *subTotalTHB
                         });
                         isPush = true;
                     }
@@ -721,12 +739,12 @@ Meteor.methods({
                     amountThb: x * o.amountThb
                 });
 
-            } else if (o.accountTypeId == "30") {
+            }
+            else if (o.accountTypeId == "30") {
                 totalEquity += o.result;
                 totalEquityUSD += o.amountUsd;
                 totalEquityRiel += o.amountRiel;
                 totalEquityBath += o.amountThb;
-
                 if (isPush === false && m == 0) {
                     if (temporary !== o.parent) {
                         if (dataOld != null) {
@@ -734,7 +752,10 @@ Meteor.methods({
                                 name: dataOld.name,
                                 code: Acc.SpaceChar.space(22 + (6 * dataOld.level)) +
                                 'Total : ' + dataOld.code,
-                                amount: x * subTotal
+                                amount: x * subTotal,
+                                amountUsd:  x * subTotalUSD ,
+                                amountRiel: x * subTotalRiel ,
+                                amountThb:  x * subTotalTHB
                             });
                             isPush = true;
                         }
@@ -784,9 +805,9 @@ Meteor.methods({
                             code: Acc.SpaceChar.space(15 + (6 * dataOld.level)) +
                             'Total : ' + dataOld.code,
                             amount: x * subTotal,
-                            amountUsd:  subTotalUSD ,
-                            amountRiel: subTotalRiel ,
-                            amountThb:  subTotalTHB
+                            amountUsd: x * subTotalUSD ,
+                            amountRiel:x * subTotalRiel ,
+                            amountThb:  x *subTotalTHB
                         });
                         isPush = true;
                     }
@@ -803,13 +824,11 @@ Meteor.methods({
                     amountRiel: x * o.amountRiel,
                     amountThb: x * o.amountThb
                 });
-
             }
         });
 
         var len = 0;
-        if (variable !== otherCurrentLiability && variable !==
-            longTermLiability) {
+        if (variable !== otherCurrentLiability && variable !==longTermLiability) {
             len = 15;
         } else {
             len = 22;
@@ -821,9 +840,9 @@ Meteor.methods({
                     code: Acc.SpaceChar.space(len + (6 * dataOld.level)) +
                     'Total : ' + dataOld.code,
                     amount: x * subTotal,
-                    amountUsd:  subTotalUSD ,
-                    amountRiel: subTotalRiel ,
-                    amountThb:  subTotalTHB
+                    amountUsd: x * subTotalUSD ,
+                    amountRiel: x *subTotalRiel ,
+                    amountThb:  x *subTotalTHB
                 });
                 isPush = true;
             }
@@ -1187,6 +1206,7 @@ Meteor.methods({
             l = 0,
             m = 0;
 
+        result.sort(compareByAccountType);
         result.forEach(function(o) {
 
             if (o.accountTypeId == "10") {
@@ -1671,3 +1691,31 @@ Meteor.methods({
 
     }
 });
+
+
+function compareByAccountType(a, b) {
+
+    var aSize = a.accountTypeId;
+    var bSize = b.accountTypeId;
+    var aLow = a.code;
+    var bLow = b.code;
+
+    if(aSize == bSize)
+    {
+        return (aLow < bLow) ? -1 : (aLow > bLow) ? 1 : 0;
+    }
+    else
+    {
+        return (aSize < bSize) ? -1 : 1;
+    }
+
+
+    /*if ((a.accountTypeId < b.accountTypeId) &&(a.code<b.code) ) {
+        return -1;
+    } else if ((a.accountTypeId > b.accountTypeId) && (a.code > b.code)) {
+        return 1;
+    } else {
+        return 0;
+    }*/
+}
+
