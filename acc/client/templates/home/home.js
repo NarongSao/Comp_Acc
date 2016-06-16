@@ -1,4 +1,5 @@
 var indexTpl = Template.acc_home;
+
 indexTpl.onCreated(function () {
     // SEO
     SEO.set({
@@ -6,6 +7,7 @@ indexTpl.onCreated(function () {
         description: 'Description for this page'
     });
 });
+
 
 indexTpl.helpers({
     data: function () {

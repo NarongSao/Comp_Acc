@@ -5,7 +5,9 @@
     <li class="{{isActiveRoute name='acc.journal'}}"><a href="{{pathFor 'acc.journal'}}"><i class="fa fa-plus"></i>
         Journal Entries</a></li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle {{isActiveRoute name='acc.fixAssetDep'}}{{isActiveRoute name='acc.currencyClosingReport'}} {{isActiveRoute name='acc.journalReport'}} {{isActiveRoute name='acc.ledgerReport'}}{{isActiveRoute name='acc.trialBalanceReport'}}" data-toggle="dropdown" role="button" aria-expanded="false">
+        <a href="#"
+           class="dropdown-toggle {{isActiveRoute name='acc.fixAssetDep'}}{{isActiveRoute name='acc.currencyClosingReport'}} {{isActiveRoute name='acc.journalReport'}} {{isActiveRoute name='acc.ledgerReport'}}{{isActiveRoute name='acc.trialBalanceReport'}}"
+           data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-eye-slash"></i> Accountant <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
@@ -29,7 +31,9 @@
         </ul>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle {{isActiveRoute name='acc.ProfitLostReport'}}{{isActiveRoute name='acc.balanceSheetReport'}}{{isActiveRoute name='acc.IncomeAndExpenditureReport'}}{{isActiveRoute name='acc.BalanceSheetNBCReport'}}" data-toggle="dropdown" role="button" aria-expanded="false">
+        <a href="#"
+           class="dropdown-toggle {{isActiveRoute name='acc.ProfitLostReport'}}{{isActiveRoute name='acc.balanceSheetReport'}}{{isActiveRoute name='acc.IncomeAndExpenditureReport'}}{{isActiveRoute name='acc.BalanceSheetNBCReport'}}"
+           data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-file-pdf-o"></i> Reports <span class="caret"></span>
         </a>
         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -40,8 +44,10 @@
                     href="{{pathFor 'acc.balanceSheetReport'}}"><i class="fa fa-file-pdf-o"></i> Balance Sheet</a>
             </li>
             <li class="divider"></li>
-           <li class="dropdown-submenu">
-                <a tabindex="-1" href="#" class="{{isActiveRoute name='acc.IncomeAndExpenditureReport'}}{{isActiveRoute name='acc.BalanceSheetNBCReport'}}"><i class="fa fa-list-alt"></i> NBC</a>
+            <!--<li class="dropdown-submenu">
+                <a tabindex="-1" href="#"
+                   class="{{isActiveRoute name='acc.IncomeAndExpenditureReport'}}{{isActiveRoute name='acc.BalanceSheetNBCReport'}}"><i
+                        class="fa fa-list-alt"></i> NBC</a>
                 <ul class="dropdown-menu">
                     <li class="{{isActiveRoute name='acc.IncomeAndExpenditureReport'}}"><a
                             href="{{pathFor 'acc.IncomeAndExpenditureReport'}}"><i class="fa fa-file-pdf-o"></i> Income
@@ -50,13 +56,16 @@
                             href="{{pathFor 'acc.BalanceSheetNBCReport'}}"><i class="fa fa-file-pdf-o"></i> Balance
                         Sheet</a></li>
                 </ul>
-            </li>
+            </li>-->
 
             <li class="dropdown-submenu">
-                <a tabindex="-1" href="#" class="{{isActiveRoute name='acc.IncomeAndExpenditureKhReport'}}{{isActiveRoute name='acc.BalanceSheetNbcKhReport'}}"><i class="fa fa-list-alt"></i> NBC</a>
+                <a tabindex="-1" href="#"
+                   class="{{isActiveRoute name='acc.IncomeAndExpenditureKhReport'}}{{isActiveRoute name='acc.BalanceSheetNbcKhReport'}}"><i
+                        class="fa fa-list-alt"></i> NBC</a>
                 <ul class="dropdown-menu">
                     <li class="{{isActiveRoute name='acc.IncomeAndExpenditureKhReport'}}"><a
-                            href="{{pathFor 'acc.IncomeAndExpenditureKhReport'}}"><i class="fa fa-file-pdf-o"></i> Income
+                            href="{{pathFor 'acc.IncomeAndExpenditureKhReport'}}"><i class="fa fa-file-pdf-o"></i>
+                        Income
                         And Expenditure</a></li>
                     <li class="{{isActiveRoute name='acc.BalanceSheetNbcKhReport'}}"><a
                             href="{{pathFor 'acc.BalanceSheetNbcKhReport'}}"><i class="fa fa-file-pdf-o"></i> Balance
@@ -68,7 +77,9 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle {{isActiveRoute name='acc.mapNbcIncomeKH'}}{{isActiveRoute name='acc.mapNbcBalanceKH'}}{{isActiveRoute name='acc.configDep'}}{{isActiveRoute name='acc.fixAssetExpense'}}{{isActiveRoute name='acc.mapNbcIncome'}}{{isActiveRoute name='acc.mapNbcBalance'}}{{isActiveRoute name='acc.mapClosing'}}{{isActiveRoute name='acc.dateEndOfProcess'}}{{isActiveRoute name='acc.chartAccount'}}{{isActiveRoute name='cpanel.exchange'}}{{isActiveRoute name='acc.exchangeNBC'}}" data-toggle="dropdown" role="button" aria-expanded="false">
+        <a href="#"
+           class="dropdown-toggle {{isActiveRoute name='acc.mapNbcIncomeKH'}}{{isActiveRoute name='acc.mapNbcBalanceKH'}}{{isActiveRoute name='acc.configDep'}}{{isActiveRoute name='acc.fixAssetExpense'}}{{isActiveRoute name='acc.mapNbcIncome'}}{{isActiveRoute name='acc.mapNbcBalance'}}{{isActiveRoute name='acc.mapClosing'}}{{isActiveRoute name='acc.dateEndOfProcess'}}{{isActiveRoute name='acc.chartAccount'}}{{isActiveRoute name='cpanel.exchange'}}{{isActiveRoute name='acc.exchangeNBC'}}"
+           data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-cogs"></i> Setting <span class="caret"></span>
         </a>
         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -101,8 +112,10 @@
             <li class="{{isActiveRoute name='acc.mapFixAsset'}}">
                 <a href="{{pathFor 'acc.mapFixAsset'}}"><i class="fa fa-map-signs"></i> Map FixAsset</a>
             </li>
-            <li class="dropdown-submenu">
-                <a tabindex="-1" href="#" class="{{isActiveRoute name='acc.mapNbcIncome'}}{{isActiveRoute name='acc.mapNbcBalance'}}"><i class="fa fa-list-alt"></i> Map ChartAccount</a>
+            <!--<li class="dropdown-submenu">
+                <a tabindex="-1" href="#"
+                   class="{{isActiveRoute name='acc.mapNbcIncome'}}{{isActiveRoute name='acc.mapNbcBalance'}}"><i
+                        class="fa fa-list-alt"></i> Map ChartAccount</a>
                 <ul class="dropdown-menu">
                     <li class="{{isActiveRoute name='acc.mapNbcBalance'}}">
                         <a href="{{pathFor 'acc.mapNbcBalance'}}"><i class="fa fa-map-signs"></i> Map NBC Balance</a>
@@ -111,9 +124,11 @@
                         <a href="{{pathFor 'acc.mapNbcIncome'}}"><i class="fa fa-map-signs"></i> Map NBC Income</a>
                     </li>
                 </ul>
-            </li>
+            </li>-->
             <li class="dropdown-submenu">
-                <a tabindex="-1" href="#" class="{{isActiveRoute name='acc.mapNbcIncomeKH'}}{{isActiveRoute name='acc.mapNbcBalanceKH'}}"><i class="fa fa-list-alt"></i> Map ChartAccount</a>
+                <a tabindex="-1" href="#"
+                   class="{{isActiveRoute name='acc.mapNbcIncomeKH'}}{{isActiveRoute name='acc.mapNbcBalanceKH'}}"><i
+                        class="fa fa-list-alt"></i> Map ChartAccount</a>
                 <ul class="dropdown-menu">
                     <li class="{{isActiveRoute name='acc.mapNbcBalanceKH'}}">
                         <a href="{{pathFor 'acc.mapNbcBalanceKH'}}"><i class="fa fa-map-signs"></i> Map NBC Balance</a>
@@ -129,6 +144,18 @@
             <a href="#">EndOfProcess</a>
         </li>-->
 
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle {{isActiveRoute name='acc.chartNetIncome'}}" data-toggle="dropdown"
+           role="button" aria-expanded="false">
+            <i class="fa fa-bar-chart"></i> Chart <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li class="{{isActiveRoute name='acc.chartNetIncome'}}"><a
+                    href="{{pathFor 'acc.chartNetIncome'}}"><i class="fa fa-bar-chart"></i> Net Income</a>
+            </li>
+        </ul>
     </li>
     <!--<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
