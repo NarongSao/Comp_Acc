@@ -14,7 +14,7 @@ var state = new ReactiveObj({
  * JournalDetail
  */
 journalDetailTpl.onRendered(function () {
- //  $('.tmpAccount').select();
+     $('.tmpAccount').select2();
     // $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
     /*$.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
         $(".tmpAccount").select2({
@@ -22,7 +22,7 @@ journalDetailTpl.onRendered(function () {
         })
     });*/
 
-    $('.tmpAccount').val('');
+    $('.tmpAccount').select2('val',"");
 
 });
 
