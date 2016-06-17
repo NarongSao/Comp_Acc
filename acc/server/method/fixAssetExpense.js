@@ -1,7 +1,9 @@
 Meteor.methods({
     removeFixAssetExpense: function (id) {
         var depType=Acc.Collection.ConfigDep.findOne();
-        var depList = Acc.Collection.DepExpList.find({isDep: false}).fetch();
+        Acc.Collection.DepExpList.update({isDep: true}, {$inc: {increment: -1}},{multi: true});
+        var depList = Acc.Collection.DepExpList.find({increment: 0}).fetch();
+
         if (depList.length != 0) {
             depList.forEach(function (obj) {
                 //Update DepExpList
@@ -12,13 +14,14 @@ Meteor.methods({
                 obj.transactionAsset.forEach(function (ob) {
                     if (i == 1 && ob.month > 0) {
                         ob.month -= depType.depPerTime;
+                        ob.month= ob.month>0 ? ob.month: 0;
                         i++;
 
-                        if (ob.month < 12) {
+                        if (ob.month < ob.maxMonth) {
                             obj.isDep = false;
                         }
                     }
-                    if (ob.month < 12) {
+                    if (ob.month < ob.maxMonth) {
                         ob.status = false;
                     }
                     transactionUpdate.push(ob);

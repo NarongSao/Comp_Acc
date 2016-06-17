@@ -37,11 +37,11 @@ Acc.TabularTable.FixAssetDep = new Tabular.Table({
                 return exp;
             }
         },{
-            data: "transactionAsset", title: "QTY",
+            data: "transactionAsset", title: "Code",
             render: function (val, type, doc) {
                 var exp = "";
                 val.forEach(function (obj) {
-                    exp += obj.qty + "<br>";
+                    exp += obj.code + "<br>";
                 })
                 return exp;
             }

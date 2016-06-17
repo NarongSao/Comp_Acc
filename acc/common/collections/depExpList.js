@@ -62,6 +62,9 @@ Acc.Schema.DepExpList = new SimpleSchema({
     }, 'transactionAsset.$.month': {
         type: Number,
         blackbox: true
+    }, 'transactionAsset.$.maxMonth': {
+        type: Number,
+        optional: true
     },
     'transactionAsset.$.status': {
         type: Boolean,
@@ -70,9 +73,29 @@ Acc.Schema.DepExpList = new SimpleSchema({
     isDep: {
         type: Boolean,
         defaultValue: false
+    },increment: {
+        type: Number,
+        defaultValue: 0
     },
     journalId: {
         type: String
+    },
+    code: {
+        type: String,
+        optional: true
+    },
+    description: {
+        type: String,
+        optional: true
+    },
+    percent: {
+        type: Number,
+        optional: true
+    },
+    estSalvage: {
+        type: Number,
+        optional: true,
+        decimal: true
     }
 });
 /**

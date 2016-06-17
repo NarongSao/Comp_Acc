@@ -5,11 +5,11 @@
                 <b>Fixed Asset</b>
             </div>
             <div class="col-sm-9" style="padding-right:1px;padding-left:0px;">
-                <div class="col-sm-4" style="padding-right:1px;padding-left:0px;">
+                <div class="col-sm-3" style="padding-right:1px;padding-left:0px;">
                     <b>Item Description</b>
                 </div>
-                <div class="col-sm-1" style="padding-right:1px;padding-left:0px;">
-                    <b>QTY</b>
+                <div class="col-sm-2" style="padding-right:1px;padding-left:0px;">
+                    <b>Code</b>
                 </div>
                 <div class="col-sm-2" style="padding-right:1px;padding-left:0px;">
                     <b>Value</b>
@@ -36,16 +36,16 @@
                 </div>
             </div>
             <div class="col-sm-9" style="padding-right:1px;padding-left:0px;">
-                <div class="col-sm-4" style="padding-right:1px;padding-left:0px;">
+                <div class="col-sm-3" style="padding-right:1px;padding-left:0px;">
                     <div class="form-group">
                         <input type="text" step="1" name="tmpItemDes" class="form-control tmpItemDes"
                                placeholder="Description">
                     </div>
                 </div>
-                <div class="col-sm-1" style="padding-right:1px;padding-left:0px;">
+                <div class="col-sm-2" style="padding-right:1px;padding-left:0px;">
                     <div class="form-group">
-                        <input type="text" step="1" name="tmpQty" class="form-control tmpQty"
-                               placeholder="Qty">
+                        <input type="text" step="1" name="tmpCode" class="form-control tmpCode"
+                               placeholder="Code">
                     </div>
                 </div>
                 <div class="col-sm-2" style="padding-right:1px;padding-left:0px;">
@@ -89,11 +89,11 @@
                      style="padding-right:2px;padding-left:2px;">{{> afQuickField name=(keyArgs @index "account") value=account readonly="true" label=false class="input-sm account" type="text"}}</div>
 
                 <div class="col-sm-9" style="padding-right:1px;padding-left:0px;">
-                    <div class="col-sm-4" style="padding-right:1px;padding-left:0px;">
+                    <div class="col-sm-3" style="padding-right:1px;padding-left:0px;">
                         <div style="padding-right:2px;padding-left:2px;">{{> afQuickField name=(keyArgs @index "description")  value=description label=false type="text" class="itemDes input-sm" readonly="true"}}</div>
                     </div>
-                    <div class="col-sm-1" style="padding-right:1px;padding-left:0px;">
-                        <div style="padding-right:2px;padding-left:2px;">{{> afQuickField name=(keyArgs @index "qty")  value=qty label=false type="text" class="qty input-sm" readonly="true"}}</div>
+                    <div class="col-sm-2" style="padding-right:1px;padding-left:0px;">
+                        <div style="padding-right:2px;padding-left:2px;">{{> afQuickField name=(keyArgs @index "code")  value=code label=false type="text" class="code input-sm" readonly="true"}}</div>
                     </div>
                     <div class="col-sm-2" style="padding-right:1px;padding-left:0px;">
                         <div style="padding-right:2px;padding-left:2px;">{{> afQuickField name=(keyArgs @index "value")  value=value label=false type="text" class="value input-sm" readonly="true"}}</div>
@@ -138,9 +138,9 @@
                 </div>
             </div>
             <div>
-                <label class="control-label col-sm-3" for="pwd">QTY:</label>
+                <label class="control-label col-sm-3" for="pwd">Code:</label>
                 <div class="col-sm-9">
-                    {{> afQuickField name="qty" label=false}}
+                    {{> afQuickField name="code" label=false}}
                 </div>
             </div>
 

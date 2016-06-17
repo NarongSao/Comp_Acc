@@ -18,6 +18,7 @@ fixAssetExpenseInsertTpl.onRendered(function () {
     datePicker();
     var cur = moment().format("YYYY-MM-DD");
     $('[name="date"]').val(cur);
+    disableDate();
 })
 
 var datePicker = function () {
@@ -78,3 +79,18 @@ AutoForm.hooks({
         }
     }
 });
+
+
+var disableDate = function () {
+    var selectorGetLastDate = {};
+    var branchId = Session.get("currentBranch");
+    selectorGetLastDate.branchId = branchId;
+
+    var dateVal = Acc.Collection.FixAssetExpense.findOne(selectorGetLastDate, {
+        sort: {
+            date: -1
+        }
+    });
+    var mindate = moment(dateVal.date).add(1, "days").toDate();
+    $("#date").data('DateTimePicker').minDate(mindate);
+}

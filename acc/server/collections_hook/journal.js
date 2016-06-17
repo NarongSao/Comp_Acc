@@ -27,6 +27,8 @@ Acc.Collection.Journal.before.insert(function (userId, doc) {
     doc._id = idGenerator.genWithPrefix(Acc.Collection.Journal, prefix, 6);
     doc.splitAccount = lenArray > 2 ? doc._id : 0;
 
+    var curMonth = moment(doc.journalDate).format("MM");
+
     if (doc.transactionAsset != undefined) {
         doc.transactionAsset.forEach(function (obj) {
 
@@ -38,6 +40,11 @@ Acc.Collection.Journal.before.insert(function (userId, doc) {
                 selectorFixAssetExpList.currencyId = doc.currencyId;
                 selectorFixAssetExpList.journalId = doc._id;
 
+                selectorFixAssetExpList.code = obj.code;
+                selectorFixAssetExpList.description = obj.description;
+                selectorFixAssetExpList.percent = obj.percent;
+                selectorFixAssetExpList.estSalvage = obj.estSalvage;
+
                 selectorFixAssetExpList.account = obj.account;
                 selectorFixAssetExpList.amount = obj.value;
                 selectorFixAssetExpList.life = obj.life;
@@ -45,15 +52,44 @@ Acc.Collection.Journal.before.insert(function (userId, doc) {
 
                 var transactionList = [];
                 let depPerYear = numeral(((obj.value - obj.estSalvage) / obj.life )).format('0,0.00');
-                for (let i = 1; i <= obj.life; i++) {
-                    transactionList.push({
-                        year: i,
-                        perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                        perYear: numeral().unformat(depPerYear),
-                        month: 0,
-                        status: false
-                    })
+
+                if (curMonth != "12") {
+                    for (let i = 1; i <= obj.life + 1; i++) {
+                        if (i == 1 || i == obj.life + 1) {
+                            var maxMonth=i == 1 ? 12 - parseInt(curMonth) : parseInt(curMonth);
+                            transactionList.push({
+                                year: i,
+                                perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                                perYear: numeral().unformat((depPerYear/12)* maxMonth),
+                                month: 0,
+                                maxMonth: maxMonth ,
+                                status: false
+                            })
+                        } else {
+                            transactionList.push({
+                                year: i,
+                                perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                                perYear: numeral().unformat(depPerYear),
+                                month: 0,
+                                maxMonth: 12,
+                                status: false
+                            })
+                        }
+
+                    }
+                } else {
+                    for (let i = 1; i <= obj.life; i++) {
+                        transactionList.push({
+                            year: i,
+                            perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                            perYear: numeral().unformat(depPerYear),
+                            month: 0,
+                            maxMonth: 12,
+                            status: false
+                        })
+                    }
                 }
+
 
                 selectorFixAssetExpList.transactionAsset = transactionList;
 
@@ -65,25 +101,31 @@ Acc.Collection.Journal.before.insert(function (userId, doc) {
                 selectorFixAssetExpList.currencyId = doc.currencyId;
                 selectorFixAssetExpList.journalId = doc._id;
 
+                selectorFixAssetExpList.code = obj.code;
+                selectorFixAssetExpList.description = obj.description;
+                selectorFixAssetExpList.percent = obj.percent;
+                selectorFixAssetExpList.estSalvage = obj.estSalvage;
+
                 selectorFixAssetExpList.account = obj.account;
                 selectorFixAssetExpList.amount = obj.value;
                 selectorFixAssetExpList.life = obj.life;
-                
-                var numYear=0;
-                for(let i=1;i<=obj.life;i++){
-                    numYear+=i;
+
+                var numYear = 0;
+                for (let i = 1; i <= obj.life; i++) {
+                    numYear += i;
                 }
 
-                var depreAmount=obj.value-obj.estSalvage;
-                var y=1;
+                var depreAmount = obj.value - obj.estSalvage;
+                var y = 1;
                 var transactionList = [];
-                for (let i = obj.life; i >0; i--) {
-                    let depPerYear = numeral((i/numYear)*depreAmount).format('0,0.00');
+                for (let i = obj.life; i > 0; i--) {
+                    let depPerYear = numeral((i / numYear) * depreAmount).format('0,0.00');
                     transactionList.push({
                         year: y,
-                        perMonth:  numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                        perYear:  numeral().unformat(depPerYear),
+                        perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                        perYear: numeral().unformat(depPerYear),
                         month: 0,
+                        maxMonth: 12,
                         status: false
                     })
                     y++;
@@ -98,26 +140,32 @@ Acc.Collection.Journal.before.insert(function (userId, doc) {
                 selectorFixAssetExpList.currencyId = doc.currencyId;
                 selectorFixAssetExpList.journalId = doc._id;
 
+                selectorFixAssetExpList.code = obj.code;
+                selectorFixAssetExpList.description = obj.description;
+                selectorFixAssetExpList.percent = obj.percent;
+                selectorFixAssetExpList.estSalvage = obj.estSalvage;
+
                 selectorFixAssetExpList.account = obj.account;
                 selectorFixAssetExpList.amount = obj.value;
                 selectorFixAssetExpList.life = obj.life;
 
-                var value=obj.value;
+                var value = obj.value;
                 var transactionList = [];
                 for (let i = 1; i <= obj.life; i++) {
-                    let depPerYear = numeral(((obj.value - obj.estSalvage) * (obj.percent/100) )).format('0,0.00');
+                    let depPerYear = numeral(((obj.value - obj.estSalvage) * (obj.percent / 100) )).format('0,0.00');
                     transactionList.push({
                         year: i,
-                        perMonth:  numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                        perYear:  numeral().unformat(depPerYear),
+                        perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                        perYear: numeral().unformat(depPerYear),
                         month: 0,
+                        maxMonth: 12,
                         status: false
                     })
-                    obj.value-=numeral().unformat(depPerYear);
+                    obj.value -= numeral().unformat(depPerYear);
 
                 }
 
-                obj.value=value;
+                obj.value = value;
                 selectorFixAssetExpList.transactionAsset = transactionList;
                 Acc.Collection.DepExpList.insert(selectorFixAssetExpList);
             }
@@ -160,8 +208,7 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
         }
     });
     modifier.$set.transaction = transaction;
-
-
+    var curMonth = moment(modifier.$set.journalDate).format("MM");
     if (modifier.$set.transactionAsset != undefined) {
 
         Acc.Collection.FixAssetDep.remove({journalId: doc._id});
@@ -177,6 +224,11 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
                 selectorFixAssetExpList.journalId = doc._id;
                 selectorFixAssetExpList.life = obj.life;
 
+                selectorFixAssetExpList.code = obj.code;
+                selectorFixAssetExpList.description = obj.description;
+                selectorFixAssetExpList.percent = obj.percent;
+                selectorFixAssetExpList.estSalvage = obj.estSalvage;
+
                 selectorFixAssetExpList.amount = obj.value;
 
 
@@ -184,47 +236,82 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
 
                 var transactionList = [];
                 let depPerYear = numeral(((obj.value - obj.estSalvage) / obj.life )).format('0,0.00');
-                for (let i = 1; i <= obj.life; i++) {
-                    transactionList.push({
-                        year: i,
-                        perMonth:  numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                        perYear:  numeral().unformat(depPerYear),
-                        month: 0,
-                        status: false
-                    })
+                if (curMonth != "12") {
+                    for (let i = 1; i <= obj.life + 1; i++) {
+                        if (i == 1 || i == obj.life + 1) {
+                            var maxMonth= i == 1 ? 12 - parseInt(curMonth) : parseInt(curMonth);
+                            transactionList.push({
+                                year: i,
+                                perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                                perYear: numeral().unformat((depPerYear/12) * maxMonth),
+                                month: 0,
+                                maxMonth: maxMonth,
+                                status: false
+                            })
+                        } else {
+                            transactionList.push({
+                                year: i,
+                                perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                                perYear: numeral().unformat(depPerYear),
+                                month: 0,
+                                maxMonth: 12,
+                                status: false
+                            })
+                        }
+
+                    }
+                } else {
+                    for (let i = 1; i <= obj.life; i++) {
+                        transactionList.push({
+                            year: i,
+                            perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                            perYear: numeral().unformat(depPerYear),
+                            month: 0,
+                            maxMonth: 12,
+                            status: false
+                        })
+                    }
                 }
+
 
                 selectorFixAssetExpList.transactionAsset = transactionList;
 
                 Acc.Collection.DepExpList.insert(selectorFixAssetExpList);
-            }else if (depType.depType == "02: Sum Of Year Digits") {
+            } else if (depType.depType == "02: Sum Of Year Digits") {
                 var selectorFixAssetExpList = {};
                 selectorFixAssetExpList.date = modifier.$set.journalDate;
                 selectorFixAssetExpList.branchId = modifier.$set.branchId;
                 selectorFixAssetExpList.currencyId = modifier.$set.currencyId;
                 selectorFixAssetExpList.journalId = doc._id;
 
+
+                selectorFixAssetExpList.code = obj.code;
+                selectorFixAssetExpList.description = obj.description;
+                selectorFixAssetExpList.percent = obj.percent;
+                selectorFixAssetExpList.estSalvage = obj.estSalvage;
+
                 selectorFixAssetExpList.account = obj.account;
                 selectorFixAssetExpList.amount = obj.value;
                 selectorFixAssetExpList.life = obj.life;
 
-                var numYear=0;
-                for(let i=1;i<=obj.life;i++){
-                    numYear+=i;
+                var numYear = 0;
+                for (let i = 1; i <= obj.life; i++) {
+                    numYear += i;
                 }
-                var depreAmount=obj.value-obj.estSalvage;
+                var depreAmount = obj.value - obj.estSalvage;
 
                 var transactionList = [];
-                var y=1;
-                for (let i = obj.life;i>0;i--) {
+                var y = 1;
+                for (let i = obj.life; i > 0; i--) {
 
-                    let depPerYear = numeral((i/numYear)*depreAmount).format('0,0.00');
+                    let depPerYear = numeral((i / numYear) * depreAmount).format('0,0.00');
 
                     transactionList.push({
                         year: y,
-                        perMonth:  numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                        perYear:  numeral().unformat(depPerYear),
+                        perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                        perYear: numeral().unformat(depPerYear),
                         month: 0,
+                        maxMonth: 12,
                         status: false
                     })
                     y++;
@@ -239,27 +326,35 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
                 selectorFixAssetExpList.currencyId = modifier.$set.currencyId;
                 selectorFixAssetExpList.journalId = doc._id;
 
+
+                selectorFixAssetExpList.code = obj.code;
+                selectorFixAssetExpList.description = obj.description;
+                selectorFixAssetExpList.percent = obj.percent;
+                selectorFixAssetExpList.estSalvage = obj.estSalvage;
+
                 selectorFixAssetExpList.account = obj.account;
                 selectorFixAssetExpList.amount = obj.value;
                 selectorFixAssetExpList.life = obj.life;
 
 
                 var transactionList = [];
-                var value=obj.value;
+                var value = obj.value;
                 for (let i = 1; i <= obj.life; i++) {
-                    let depPerYear = numeral(((obj.value - obj.estSalvage) * (obj.percent/100) )).format('0,0.00');
+                    let depPerYear = numeral(((obj.value - obj.estSalvage) * (obj.percent / 100) )).format('0,0.00');
                     transactionList.push({
                         year: i,
-                        perMonth:  numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                        perYear:  numeral().unformat(depPerYear),
+                        perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
+                        perYear: numeral().unformat(depPerYear),
                         month: 0,
+                        maxMonth: 12,
                         status: false
                     })
-                    obj.value-=numeral().unformat(depPerYear);
+                    obj.value -= numeral().unformat(depPerYear);
 
                 }
-                obj.value=value;
+                obj.value = value;
                 selectorFixAssetExpList.transactionAsset = transactionList;
+
                 Acc.Collection.DepExpList.insert(selectorFixAssetExpList);
             }
 

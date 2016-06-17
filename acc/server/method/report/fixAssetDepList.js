@@ -67,31 +67,37 @@ Meteor.methods({
         selector.branchId = self.branchId;
         selector.isDep=false;
         var depList = Acc.Collection.DepExpList.find(selector).fetch();
+        var depConfig=Acc.Collection.ConfigDep.findOne({});
 
             var accountShow="";
         if (depList.length != 0) {
             depList.sort(compareASD);
+            var i;
             depList.forEach(function (obj) {
 
 
                 var cumDeprec = 0;
-                var remain = obj.amount;
                 var monthDep=0;
-                obj.transactionAsset.forEach(function (ob) {
-                    monthDep+=ob.month;
-                    cumDeprec += ob.month* ob.perMonth;
-                    remain -= ob.month* ob.perMonth;
-                })
-                var remainLife=(obj.life*12)-monthDep;
-                var currency=getCurrenySymbol(obj.currencyId);
+                var depExp=0;
 
+                obj.transactionAsset.forEach(function (ob) {
+
+                    var depMonth= ob.maxMonth < depConfig.depPerTime ? ob.maxMonth: depConfig.depPerTime ;
+                    if(ob.month!=0){
+                        monthDep+=ob.month;
+                        cumDeprec += ob.month* ob.perMonth;
+                        depExp = depMonth* ob.perMonth;
+                    }
+                })
+                var currency=getCurrenySymbol(obj.currencyId);
                 if(accountShow!=obj.account){
-                    var accountHTML="<td style='border-bottom: none'>"+obj.account+"</td>";
-                }else{
-                    var accountHTML="<td style='border: none'></td>";
+                    i=1;
+                    content+="<tr style='background-color: lightgrey'><td colspan='10' style='border-bottom: none'>"+obj.account+"</td></tr>";
                 }
-                content+="<tr>"+accountHTML+"<td>"+obj.life+"</td><td>"+moment(obj.date).format("DD-MM-YYYY")+"</td><td>"+numeral(obj.amount).format('0,0.00')+currency+"</td><td>"+monthDep+"</td><td>"+numeral(cumDeprec).format('0,0.00')+currency+"</td><td>"+numeral(remain).format('0,0.00')+currency+"</td><td>"+remainLife+"</td></tr>";
+
+                content+="<tr><td>"+i+"</td><td>"+obj.code+"</td><td>"+obj.description+"</td><td>"+moment(obj.date).format("DD-MM-YYYY")+"</td><td>"+numeral(obj.amount).format('0,0.00')+currency+"</td><td>"+obj.percent+"</td><td>"+monthDep+"</td><td>"+numeral(depExp).format('0,0.00')+currency+"</td><td>"+numeral(cumDeprec).format('0,0.00')+currency+"</td><td>"+obj.estSalvage+"</td></tr>";
                 accountShow=obj.account;
+                i++;
             })
         }
         data.content = content;

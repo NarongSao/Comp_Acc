@@ -53,8 +53,8 @@ Acc.Schema.FixAssetDep = new SimpleSchema({
     decimal: true,
     optional: true
   },
-  'transactionAsset.$.qty': {
-    type: Number,
+  'transactionAsset.$.code': {
+    type: String,
     optional: true,
     blackbox: true
   },

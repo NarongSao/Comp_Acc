@@ -15,7 +15,7 @@
 <template name="acc_fixAssetExpenseInsert">
     {{#autoForm collection=Acc.Collection.FixAssetExpense id="acc_fixAssetExpenseInsert"  type="insert"}}
     <div class="row">
-        {{> afQuickField name='date'}}
+        {{> afQuickField name='date' id='date'}}
     </div>
     <button type="submit" class="btn btn-primary">{{fa "floppy-o"}} Save</button>
     <button type="reset" class="btn btn-default">{{fa "refresh"}} Reset</button>
