@@ -56,6 +56,7 @@ Meteor.methods({
         data.title = Cpanel.Collection.Company.findOne();
 
         /****** Header *****/
+        params.date=moment().format('DD/MMMM/YYYY');
         data.header = params;
         /****** Content *****/
 
@@ -66,13 +67,23 @@ Meteor.methods({
 
         selector.branchId = self.branchId;
         selector.isDep=false;
+        
+        
         var depList = Acc.Collection.DepExpList.find(selector).fetch();
         var depConfig=Acc.Collection.ConfigDep.findOne({});
 
             var accountShow="";
         if (depList.length != 0) {
             depList.sort(compareASD);
-            var i;
+            var i=0;
+            var totalAmount=0;
+            var totalCumDeprec=0;
+            var totalDepExp=0;
+            var totalNetBookValue=0;
+            var  baseCurrency=Cpanel.Collection.Setting.findOne({}).baseCurrency;
+            var mainCurrency=getCurrenySymbol(baseCurrency)
+
+            var exchangeId=Cpanel.Collection.Exchange.findOne({},{sort: {_id: -1}})._id;
             depList.forEach(function (obj) {
 
 
@@ -90,15 +101,32 @@ Meteor.methods({
                     }
                 })
                 var currency=getCurrenySymbol(obj.currencyId);
+                if(accountShow!=obj.account && i>1){
+                    content+="<tr><td colspan='4' style='border-bottom: none' align='center'>Total</td><td>"+numeral(totalAmount).format('0,0.00')+currency+"</td><td colspan='2'></td><td>"+numeral(totalDepExp).format('0,0.00')+currency+"</td><td>"+numeral(totalCumDeprec).format('0,0.00')+currency+"</td><td>"+numeral(totalNetBookValue).format('0,0.00')+currency+"</td></tr>";
+                }
+
                 if(accountShow!=obj.account){
+                    totalAmount=0;
+                    totalCumDeprec=0;
+                    totalDepExp=0;
+                    totalNetBookValue=0;
+
                     i=1;
                     content+="<tr style='background-color: lightgrey'><td colspan='10' style='border-bottom: none'>"+obj.account+"</td></tr>";
                 }
 
-                content+="<tr><td>"+i+"</td><td>"+obj.code+"</td><td>"+obj.description+"</td><td>"+moment(obj.date).format("DD-MM-YYYY")+"</td><td>"+numeral(obj.amount).format('0,0.00')+currency+"</td><td>"+obj.percent+"</td><td>"+monthDep+"</td><td>"+numeral(depExp).format('0,0.00')+currency+"</td><td>"+numeral(cumDeprec).format('0,0.00')+currency+"</td><td>"+obj.estSalvage+"</td></tr>";
+                content+="<tr><td>"+i+"</td><td>"+obj.code+"</td><td>"+obj.description+"</td><td>"+moment(obj.date).format("DD-MM-YYYY")+"</td><td>"+numeral(obj.amount).format('0,0.00')+currency+"</td><td>"+obj.percent+"%</td><td>"+monthDep+"</td><td>"+numeral(depExp).format('0,0.00')+currency+"</td><td>"+numeral(cumDeprec).format('0,0.00')+currency+"</td><td>"+numeral(obj.estSalvage).format('0,0.00')+currency+"</td></tr>";
                 accountShow=obj.account;
                 i++;
+
+
+                totalAmount+= (Meteor.call('exchange', obj.currencyId, baseCurrency, obj.amount, exchangeId));
+                totalCumDeprec+=(Meteor.call('exchange', obj.currencyId, baseCurrency, cumDeprec, exchangeId));;
+                totalDepExp+=(Meteor.call('exchange', obj.currencyId, baseCurrency, depExp, exchangeId));;
+                totalNetBookValue+=(Meteor.call('exchange', obj.currencyId, baseCurrency, obj.estSalvage, exchangeId));;
+
             })
+            content+="<tr><td colspan='4' style='border-bottom: none' align='center'>Total</td><td>"+numeral(totalAmount).format('0,0.00')+mainCurrency+"</td><td colspan='2'></td><td>"+numeral(totalDepExp).format('0,0.00')+mainCurrency+"</td><td>"+numeral(totalCumDeprec).format('0,0.00')+mainCurrency+"</td><td>"+numeral(totalNetBookValue).format('0,0.00')+mainCurrency+"</td></tr>";
         }
         data.content = content;
         return data;
