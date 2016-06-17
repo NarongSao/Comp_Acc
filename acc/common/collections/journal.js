@@ -128,8 +128,8 @@ Acc.Schema.Journal = new SimpleSchema({
         optional: true,
         blackbox: true
     },
-    'transactionAsset.$.qty': {
-        type: Number,
+    'transactionAsset.$.code': {
+        type: String,
         optional: true,
         blackbox: true
     },
@@ -218,8 +218,8 @@ Acc.Schema.fixAssetSchema = new SimpleSchema({
         type: Number,
         optional: true
     },
-    qty: {
-        type: Number,
+    code: {
+        type: String,
         optional: true
     },
     percent: {

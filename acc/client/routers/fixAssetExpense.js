@@ -1,14 +1,11 @@
 accRoutes.route('/fixAssetExpense', {
     name: 'acc.fixAssetExpense',
-    /*subscriptions: function (params, queryParams) {
+    subscriptions: function (params, queryParams) {
         this.register(
-            'accDateEndOfProcess',
-            Meteor.subscribe('accDateEndOfProcess')
-        ),this.register(
-            'accCloseChartAccount',
-            Meteor.subscribe('accCloseChartAccount')
+            'accFixAssetExpense',
+            Meteor.subscribe('accFixAssetExpense')
         );
-    },*/
+    },
     action: function (params, queryParams) {
         Layout.main('acc_fixAssetExpense');
     },

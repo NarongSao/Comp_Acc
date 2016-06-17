@@ -8,7 +8,7 @@ var stateAsset = new ReactiveObj({
     life: "",
     estSalvage: "",
     des: "",
-    qty: "",
+    code: "",
     percent: "",
     cssClassForAddMoreFixedAsset: 'disabled'
 });
@@ -34,8 +34,8 @@ fixAssetTpl.helpers({
         var value = stateAsset.get('value');
         var life = stateAsset.get('life');
         var estSalvage = stateAsset.get('estSalvage');
-        var qty = stateAsset.get('qty');
-        if (value != "" && life != "" && account != "" && estSalvage != "" && qty != "") {
+
+        if (value != "" && life != "" && account != "" && estSalvage != "") {
             stateAsset.set('cssClassForAddMoreFixedAsset', '');
         } else {
             stateAsset.set('cssClassForAddMoreFixedAsset', 'disabled');
@@ -77,7 +77,7 @@ fixAssetTpl.events({
         let value = $('[name="tmpValue"]').val();
         let life = $('[name="tmpLife"]').val();
         let estSalvage = $('[name="tmpEstimate"]').val();
-        let qty = $('[name="tmpQty"]').val();
+        let code = $('[name="tmpCode"]').val();
         let itemDes = $('[name="tmpItemDes"]').val();
         let percent = $('[name="tmpPercent"]').val();
 
@@ -86,14 +86,14 @@ fixAssetTpl.events({
             value: value,
             life: life,
             estSalvage: estSalvage,
-            qty: qty,
+            code: code,
             percent: percent,
             description: itemDes
         });
 
 
         $('.tmpAccount').select2('val', '');
-        $('.tmpQty').val('');
+        $('.tmpCode').val('');
         $('.tmpValue').val('');
         $('.tmpLife').val('');
         $('.tmpEstimate').val('');
@@ -104,7 +104,7 @@ fixAssetTpl.events({
         stateAsset.set('value', "");
         stateAsset.set('life', "");
         stateAsset.set('estSalvage', "");
-        stateAsset.set('qty', "");
+        stateAsset.set('code', "");
         stateAsset.set('percent', "");
         stateAsset.set('itemDes', "");
 
@@ -118,8 +118,8 @@ fixAssetTpl.events({
     'change .tmpAccount': function (e, t) {
         stateAsset.set('account', $('#account').val())
     },
-    'change .tmpQty': function (e, t) {
-        stateAsset.set('qty', $(e.currentTarget).val())
+    'change .tmpCode': function (e, t) {
+        stateAsset.set('code', $(e.currentTarget).val())
     },
     'keyup .tmpValue': function (e, t) {
         stateAsset.set('value', $(e.currentTarget).val());
