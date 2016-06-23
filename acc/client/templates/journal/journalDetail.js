@@ -14,26 +14,9 @@ var state = new ReactiveObj({
  * JournalDetail
  */
 journalDetailTpl.onRendered(function () {
-<<<<<<< Updated upstream
-     // $('.tmpAccount').select2();
-=======
+
     $('.tmpAccount').select2();
->>>>>>> Stashed changes
-    // $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
-    /*$.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
-        $(".tmpAccount").select2({
-            matcher: oldMatcher(matchStart)
-        })
-    });*/
-
-<<<<<<< Updated upstream
-    // $('.tmpAccount').select2('val',"");
-     $('.tmpAccount').val("");
-
-=======
-    // $('.tmpAccount').val('');
     $('.tmpAccount').select2('val','');
->>>>>>> Stashed changes
 
 });
 
