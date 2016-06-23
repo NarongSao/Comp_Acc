@@ -139,9 +139,6 @@ indexTpl.events({
         }
 
         itemsState.clear();
-        var dataTable = $(event.target).closest('table').DataTable();
-        var rowData = dataTable.row(event.currentTarget).data();
-
 
         var selectorGetLastDate = {};
         var branchId = Session.get("currentBranch");
@@ -150,7 +147,9 @@ indexTpl.events({
         var selector = {};
         selector._id = rowData._id;
 
-        if (rowData.transactionAsset != undefined) {
+        if (rowData.transactionAsset == null || rowData.transactionAsset.length<=0) {
+
+        }else{
             stateFixAsset.set('isFixAsset', true);
             $('.js-switch').trigger("click");
         }
@@ -203,7 +202,9 @@ indexTpl.events({
 
 
     }, 'click .update': function (e, t) {
-        if (this.transactionAsset != undefined) {
+        if (this.transactionAsset == undefined || this.transactionAsset.length<=0) {
+
+        }else{
             stateFixAsset.set('isFixAsset', true);
             $('.js-switch').trigger("click");
 

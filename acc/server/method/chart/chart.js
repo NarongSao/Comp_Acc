@@ -24,19 +24,20 @@ Meteor.methods({
         };
         var arr = [];
         if (netIncome.count() > 0) {
-            var i = 1;
+
             netIncome.forEach((obj)=> {
+                var month=moment(obj.date).format("MM");
+                month=parseInt(month);
                 if (param.currency == "usd") {
-                    data.labels.push(getMonthName(i));
+                    data.labels.push(getMonthName(month));
                     arr.push(obj.dollar);
                 } else if (param.currency == "khr") {
-                    data.labels.push(getMonthName(i));
+                    data.labels.push(getMonthName(month));
                     arr.push(obj.riel);
                 } else if (param.currency == "baht") {
-                    data.labels.push(getMonthName(i));
+                    data.labels.push(getMonthName(month));
                     arr.push(obj.baht);
                 }
-                i++;
             });
         }
 

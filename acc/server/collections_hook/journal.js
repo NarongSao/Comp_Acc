@@ -370,7 +370,10 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
 
 
         Acc.Collection.FixAssetDep.insert(selectorFixAssetDep);
+    }else{
+        Acc.Collection.FixAssetDep.remove({journalId: doc._id});
+        Acc.Collection.DepExpList.remove({journalId: doc._id});
+        modifier.$set.transactionAsset=[];
     }
-
-
 });
+
