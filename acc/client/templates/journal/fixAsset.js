@@ -4,12 +4,12 @@ var fixAssetTpl = Template.acc_FixAsset,
 
 var stateAsset = new ReactiveObj({
     account: "",
-    value: "",
-    life: "",
-    estSalvage: "",
+    value: 0,
+    life: 0,
+    estSalvage: 0,
     des: "",
     code: "",
-    percent: "",
+    percent: 0,
     cssClassForAddMoreFixedAsset: 'disabled'
 });
 var fixAssetDepCollection;
@@ -94,18 +94,18 @@ fixAssetTpl.events({
 
         $('.tmpAccount').select2('val', '');
         $('.tmpCode').val('');
-        $('.tmpValue').val('');
-        $('.tmpLife').val('');
-        $('.tmpEstimate').val('');
+        $('.tmpValue').val(0);
+        $('.tmpLife').val(0);
+        $('.tmpEstimate').val(0);
         $('.tmpItemDes').val('');
-        $('.tmpPercent').val('');
+        $('.tmpPercent').val(0);
 
         stateAsset.set('account', "");
-        stateAsset.set('value', "");
-        stateAsset.set('life', "");
-        stateAsset.set('estSalvage', "");
+        stateAsset.set('value', 0);
+        stateAsset.set('life', 0);
+        stateAsset.set('estSalvage', 0);
         stateAsset.set('code', "");
-        stateAsset.set('percent', "");
+        stateAsset.set('percent', 0);
         stateAsset.set('itemDes', "");
 
 
