@@ -29,11 +29,11 @@ Meteor.methods({
             depList.forEach(function (obj) {
                 var cumDeprec = 0;
                 var bvEndYear = obj.amount;
-                content+="<tr style='background-color: #e5e5e5'><td colspan='6'>"+obj.account+" : "+obj.amount+getCurrenySymbol(obj.currencyId)+"</td></tr>";
+                content+="<tr style='background-color: #e5e5e5'><td colspan='6'>"+obj.account+" : "+numeral(obj.amount).format('0,0.00')+getCurrenySymbol(obj.currencyId)+"</td></tr>";
                 obj.transactionAsset.forEach(function (ob) {
                     cumDeprec += ob.perYear;
                     bvEndYear -= ob.perYear;
-                    content+="<tr><td>"+ob.year+"</td><td>"+ob.perMonth+"</td><td>"+ob.perYear+"</td><td>"+numeral().unformat(numeral(cumDeprec).format('0,0.00'))+"</td><td>"+numeral().unformat(numeral(bvEndYear).format('0,0.00'))+"</td><td>"+ob.month+"</td></tr>";
+                    content+="<tr><td>"+ob.year+"</td><td>"+numeral(ob.perMonth).format('0,0.00')+"</td><td>"+numeral(ob.perYear).format('0,0.00')+"</td><td>"+numeral().unformat(numeral(cumDeprec).format('0,0.00'))+"</td><td>"+numeral().unformat(numeral(bvEndYear).format('0,0.00'))+"</td><td>"+ob.month+"</td></tr>";
                 })
             })
         }

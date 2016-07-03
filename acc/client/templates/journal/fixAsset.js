@@ -74,12 +74,12 @@ fixAssetTpl.helpers({
 fixAssetTpl.events({
     'click .addItem': function (e, t) {
         let accountOrg = $('[name="tmpAccount"]').val();
-        let value = $('[name="tmpValue"]').val();
-        let life = $('[name="tmpLife"]').val();
-        let estSalvage = $('[name="tmpEstimate"]').val();
+        let value =parseFloat($('[name="tmpValue"]').val());
+        let life = parseFloat($('[name="tmpLife"]').val());
+        let estSalvage = parseFloat($('[name="tmpEstimate"]').val());
         let code = $('[name="tmpCode"]').val();
         let itemDes = $('[name="tmpItemDes"]').val();
-        let percent = $('[name="tmpPercent"]').val();
+        let percent = parseFloat($('[name="tmpPercent"]').val());
 
         fixAssetDepCollection.insert({
             account: accountOrg,
