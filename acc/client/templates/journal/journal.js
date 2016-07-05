@@ -63,8 +63,8 @@ updateTpl.onRendered(function () {
 });
 
 insertTpl.onRendered(function () {
-    $('#currencyId').select2('val', "KHR");
-    Session.set('currencyId', 'KHR');
+    $('#currencyId').select2('val', "USD");
+    Session.set('currencyId', 'USD');
 });
 
 insertTpl.helpers({

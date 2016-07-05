@@ -12,10 +12,12 @@ Acc.TabularTable.DateEndOfProcess = new Tabular.Table({
             tmpl: Meteor.isClient && Template.acc_dateEndOfProcessAction
         },
         {data: "closeDate", title: "Date"},
-        {data: "createdBy", title: "User Create",
-         render: function(val,type,doc){
-         return Meteor.users.findOne({_id: val}).username;
-         }}
+        {
+            data: "createdBy", title: "User Create",
+            render: function (val, type, doc) {
+                return Meteor.users.findOne({_id: val}).username;
+            }
+        }
 
     ],
     order: ['1', 'desc'],

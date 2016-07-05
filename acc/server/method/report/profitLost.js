@@ -74,8 +74,8 @@ Meteor.methods({
             selectorEnd.branchId = self.branchId;
         }
         selectorEnd.closeDate={
-            $lte: moment(date[0]).format("YYYY-MM-DD"),
-            $gte: moment(startDate).format("YYYY-MM-DD")
+            $gte: moment(startDate).format("YYYY-MM-DD"),
+            $lt: moment(moment(date[0],"YYYY-MM-DD").add(1,'days').toDate()).format("YYYY-MM-DD")
         }
         var endDate = Acc.Collection.CloseChartAccount.findOne(selectorEnd, {
             sort: {
@@ -103,11 +103,9 @@ Meteor.methods({
 
         // Selector Middle
         var selectorMiddle = {};
-
-        if (endDate != null) {
+        if (!_.isUndefined(endDate)) {
             selectorMiddle.journalDate = {
-                $gt: moment(endDate.closeDate,"YYYY-MM-DD").toDate(),
-                $gte: startDate,
+                $gte: moment(endDate.closeDate,"YYYY-MM-DD").add(1,'days').toDate(),
                 $lt: moment(date[0],"YYYY-MM-DD").toDate()
             };
         } else {
@@ -116,6 +114,7 @@ Meteor.methods({
                 $lt: moment(date[0],"YYYY-MM-DD").toDate()
             };
         }
+
 
 
         if (self.currencyId != "All") {
