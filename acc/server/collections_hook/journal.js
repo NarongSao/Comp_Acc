@@ -60,7 +60,7 @@ Acc.Collection.Journal.before.insert(function (userId, doc) {
                             transactionList.push({
                                 year: i,
                                 perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                                perYear: (numeral().unformat((depPerYear)/12)* maxMonth,
+                                perYear: numeral().unformat(numeral((numeral().unformat(depPerYear)/12)* maxMonth).format('0,0.00')),
                                 month: 0,
                                 maxMonth: maxMonth ,
                                 status: false
@@ -243,7 +243,7 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
                             transactionList.push({
                                 year: i,
                                 perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                                perYear: (numeral().unformat(depPerYear)/12) * maxMonth,
+                                perYear: numeral().unformat(numeral((numeral().unformat(depPerYear)/12)* maxMonth).format('0,0.00')),
                                 month: 0,
                                 maxMonth: maxMonth,
                                 status: false
@@ -252,7 +252,7 @@ Acc.Collection.Journal.before.update(function (userId, doc, fieldNames, modifier
                             transactionList.push({
                                 year: i,
                                 perMonth: numeral().unformat(numeral(numeral().unformat(depPerYear) / 12).format('0,0.00')),
-                                perYear: parseFloat(numeral().unformat(depPerYear)),
+                                perYear: numeral().unformat(depPerYear),
                                 month: 0,
                                 maxMonth: 12,
                                 status: false
